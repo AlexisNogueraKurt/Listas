@@ -7,6 +7,55 @@ namespace Listas
     {
         static void Main(string[] args)
         {
+            //listasSimple();
+
+            listasConObjetos();
+        }
+
+        static void listasConObjetos()
+        {
+            //inicializar lista con objetos
+            List<Persona> personas = new List<Persona>();
+
+            //agregar objeto persona a lista CON referencia del objeto persona
+            Persona persona = new Persona();
+
+            persona.dni = 1000;
+            persona.nombre = "Jose";
+            persona.apellido = "Perez";
+
+            personas.Add(persona);
+
+            //agregar objeto persona a lista SIN referencia del objeto persona
+            personas.Add(new Persona()
+            {
+                dni = 2000,
+                nombre = "Juan",
+                apellido = "Martinez"
+            });
+
+            personas.Add(new Persona()
+            {
+                dni = 3000,
+                nombre = "Pedro",
+                apellido = "Picapiedra"
+            });
+
+            personas.Add(new Persona()
+            {
+                dni = 4000,
+                nombre = "Pablo",
+                apellido = "??"
+            });
+
+            foreach (Persona p in personas)
+            {
+                System.Console.WriteLine($"Nombre: {p.nombre}, Apellido: {p.apellido}, DNI: {p.dni}");
+            }
+        }
+
+        static void listasSimple()
+        {
             //crear lista de numeros enteros, hay dos formas:
 
             //1) en dos lineas
@@ -56,6 +105,56 @@ namespace Listas
 
             InformarLista(numeros);
 
+            //eliminar un elemento de la lista, metodo Remove
+
+            numeros.Add(1000);
+            numeros.Add(2000);
+
+            InformarLista(numeros);
+
+            numeros.Remove(2000);
+
+            InformarLista(numeros);
+            System.Console.WriteLine("Remove");
+
+            //eliminar elemento de la liste, metodo RemoveAt
+
+            numeros.RemoveAt(4);
+
+            InformarLista(numeros);
+            System.Console.WriteLine("RemoveAt");
+
+            numeros.RemoveAll(numero => numero > 40);
+
+            InformarLista(numeros);
+            System.Console.WriteLine("RemoveAll");
+
+            //ordenar numeros creciente o ascendente
+            numeros.Sort();
+
+            InformarLista(numeros);
+            System.Console.WriteLine("Sort");
+
+
+            //ordenar numeros decreciente o descendente
+            numeros.Sort();
+
+            numeros.Reverse();
+
+            InformarLista(numeros);
+            System.Console.WriteLine("Reverse");
+
+            System.Console.WriteLine("-----------------------");
+
+            //informar por pantalla con metodo "ForEach"
+
+            numeros.ForEach(x =>
+            {
+                Console.WriteLine(x);
+            });
+
+
+            System.Console.WriteLine("ForEach");
         }
 
         static void InformarLista(List<int> numeros)
